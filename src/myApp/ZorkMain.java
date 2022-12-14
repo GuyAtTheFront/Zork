@@ -4,19 +4,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.ArrayBlockingQueue;
 
-import javax.management.Descriptor;
-
-import org.ietf.jgss.Oid;
 
 public class ZorkMain {
 
+    public static final String FNAME = "location.txt";
     public static List<Location> locations = new LinkedList<>();
     public static String playerLocation = "";
     public static Location currentLocation = null;
@@ -25,7 +21,7 @@ public class ZorkMain {
 
     public static void main(String[] args) {
         
-        String fname = "location.txt";
+        String fname = (args.length == 0) ? FNAME : args[0];
 
         loadData(fname);
 
@@ -137,7 +133,7 @@ public class ZorkMain {
 
         if(w1.trim().equalsIgnoreCase("quit")){
             System.out.println("Goodbye");
-            return;
+            System.exit(0);
         }
 
         if(w1.trim().equalsIgnoreCase("peek")){
